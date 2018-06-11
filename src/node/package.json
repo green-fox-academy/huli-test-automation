@@ -1,0 +1,25 @@
+{
+  "name": "huli-selenium",
+  "version": "1.0.0",
+  "description": "test automation dev env",
+  "main": "test.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pontiac1-1/huli-selenium.git"
+  },
+  "author": "fehersanyi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pontiac1-1/huli-selenium/issues"
+  },
+  "homepage": "https://github.com/pontiac1-1/huli-selenium#readme",
+  "devDependencies": {
+    "selenium-webdriver": "^4.0.0-alpha.1"
+  },
+  "dependencies": {
+    "chromedriver": "^2.39.0"
+  }
+}
