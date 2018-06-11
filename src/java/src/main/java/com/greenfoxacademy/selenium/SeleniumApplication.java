@@ -5,10 +5,12 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @SpringBootApplication
 public class SeleniumApplication {
@@ -16,14 +18,22 @@ public class SeleniumApplication {
   public static void main(String[] args) throws Exception {
     SpringApplication.run(SeleniumApplication.class, args);
 
-    // System.setProperty("webdriver.chrome.driver", ".driver/chromedriver");
+/**
+    // If you have problem adjusting browser's driver
+    System.setProperty("webdriver.chrome.driver", ".driver/chromedriver");
+*/
 
-    // Set Chrome Headless mode true
-    FirefoxOptions options = new FirefoxOptions();
-    options.setHeadless(true);
+    // Start chrome headless mode
+    ChromeOptions options = new ChromeOptions();
+    List<String> chromeSetup = new ArrayList<>(Arrays.asList(
+            "--silent-launch",
+            "--no-startup-window",
+            "no-sandbox",
+            "headless"));
+    options.addArguments(chromeSetup);
 
     // Instantiate Web Driver
-    WebDriver driver = new FirefoxDriver(options);
+    WebDriver driver = new ChromeDriver(options);
     driver.get("https://google.com");
     System.out.println("Page title: " + driver.getTitle());
 
@@ -31,8 +41,8 @@ public class SeleniumApplication {
     driver.findElement(By.name("q")).sendKeys("java junior developer job");
     driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
 
-/*
-    // Another solution
+/**
+    // Another approach with the same result
     WebElement searchButton = driver.findElement(By
             .name("btnK"));
 
@@ -57,7 +67,4 @@ public class SeleniumApplication {
     // Close the browser
     driver.quit();
   }
-
-
 }
-
